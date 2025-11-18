@@ -15,13 +15,41 @@ Else
 6.	Return 0
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+struct eligible {
+    int age;
+    char n[20];
+};
+
+int main() {
+    struct eligible e;
+
+    printf("Enter name: ");
+    scanf("%s", e.n);
+    printf("Enter age: ");
+    scanf("%d", &e.age);
+
+    if (e.age <= 6)
+        printf("Vaccine Eligibility: No\n");
+    else
+        printf("Vaccine Eligibility: Yes\n");
+
+    printf("Name: %s\nAge: %d\n", e.n, e.age);
+    return 0;
+}
+```
 
 
 Output:
-
-//paste your output here
+```
+Enter name: Rahul
+Enter age: 8
+Vaccine Eligibility: Yes
+Name: Rahul
+Age: 8
+```
 
 
 Result:
@@ -43,16 +71,44 @@ Algorithm:
 7.	Return 0
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+struct numbers {
+    int a, b;
+};
+
+struct numbers add(struct numbers x) {
+    struct numbers r;
+    r.a = x.a + x.b;
+    return r;
+}
+
+int main() {
+    struct numbers n, result;
+
+    printf("Enter a: ");
+    scanf("%d", &n.a);
+    printf("Enter b: ");
+    scanf("%d", &n.b);
+
+    result = add(n);
+
+    printf("Sum = %d\n", result.a);
+
+    return 0;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter a: 10
+Enter b: 20
+Sum = 30
+```
 
 
 
@@ -85,16 +141,42 @@ Use scanf to input the file name into the name array.
 5.	Return 0 to indicate successful program execution.
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    FILE *p;
+    char name[50];
+
+    printf("Enter file name: ");
+    scanf("%s", name);
+
+    printf("File %s created successfully\n", name);
+
+    p = fopen(name, "w");
+    if (p == NULL) {
+        printf("Error opening file\n");
+        return 1;
+    }
+
+    printf("File opened successfully\n");
+    fclose(p);
+    printf("File closed\n");
+
+    return 0;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter file name: sample.txt
+File sample.txt created successfully
+File opened successfully
+File closed
+```
 
 
 
@@ -132,16 +214,54 @@ Use scanf to input the file name into the name array and the number of strings i
 5.	Return 0 to indicate successful program execution.
  
 Program:
+```
+#include <stdio.h>
 
-//type your code here
+int main() {
+    FILE *p;
+    char name[50], text[100];
+    int num, i;
+
+    printf("Enter file name: ");
+    scanf("%s", name);
+    printf("Enter number of strings: ");
+    scanf("%d", &num);
+
+    p = fopen(name, "w");
+    if (p == NULL) {
+        printf("Error opening file\n");
+        return 1;
+    }
+
+    printf("File opened successfully\n");
+
+    for (i = 0; i < num; i++) {
+        printf("Enter text %d: ", i + 1);
+        scanf("%s", text);
+        fputs(text, p);
+        fputs("\n", p);
+    }
+
+    fclose(p);
+    printf("Data added successfully\n");
+
+    return 0;
+}
+```
 
 
 
 
 Output:
-
-
-//paste your output here
+```
+Enter file name: notes.txt
+Enter number of strings: 3
+File opened successfully
+Enter text 1: Hello
+Enter text 2: World
+Enter text 3: Cprogram
+Data added successfully
+```
 
 
 
@@ -186,16 +306,63 @@ Algorithm:
 13.End the program by returning 0.
 
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct subject {
+    char name[20];
+    int marks;
+};
+
+int main() {
+    int n, i;
+    struct subject *s;
+
+    printf("Enter number of subjects: ");
+    scanf("%d", &n);
+
+    s = (struct subject*)malloc(n * sizeof(struct subject));
+    if (s == NULL) {
+        printf("Memory not allocated\n");
+        return 1;
+    }
+
+    for (i = 0; i < n; i++) {
+        printf("Enter subject name: ");
+        scanf("%s", s[i].name);
+        printf("Enter marks: ");
+        scanf("%d", &s[i].marks);
+    }
+
+    printf("\nSubject Details:\n");
+    for (i = 0; i < n; i++) {
+        printf("%s - %d\n", s[i].name, s[i].marks);
+    }
+
+    free(s);
+    return 0;
+}
+```
 
 
 
 
 Output:
+```
+Enter number of subjects: 3
+Enter subject name: Maths
+Enter marks: 90
+Enter subject name: Science
+Enter marks: 85
+Enter subject name: English
+Enter marks: 88
 
-
-//paste your output here
+Subject Details:
+Maths - 90
+Science - 85
+English - 88
+```
 
 
 
